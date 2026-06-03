@@ -1,0 +1,35 @@
+# --- WAVE 3: FRONTEND UI ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-frontend
+  namespace: ot-microservices
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-frontend
+  template:
+    metadata:
+      labels:
+        app: web-frontend
+    spec:
+      containers:
+      - name: web-frontend
+        image: opstree/ot-frontend:latest # Pre-built public web image
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-frontend
+  namespace: ot-microservices
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: web-frontend
