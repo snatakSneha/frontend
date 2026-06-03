@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
       - name: employee-api
-        image: opstree/ot-employee:latest # Pre-built public image from Opstree
+        image: nginx:alpine
         ports:
         - containerPort: 8080
 ---
