@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
       - name: web-frontend
-        image: opstree/ot-frontend:latest # Pre-built public web image
+        image: opstree/ot-frontend:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
 ---
